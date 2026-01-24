@@ -23,8 +23,6 @@ func main() {
 
 	port := ":80"
 	fmt.Printf("Server starting on port %s\n", port)
-	fmt.Printf("Upload form available at http://localhost%s/upload-form\n", port)
-	fmt.Printf("<a href='http://localhost%s/upload-form' />", port)
 
 	http.ListenAndServe(port, r)
 }
