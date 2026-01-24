@@ -195,7 +195,7 @@ func ListFilesHandler(w http.ResponseWriter, r *http.Request) {
                         <a href="{{.DownloadURL}}" class="download-btn">Download</a>
                         <a href="/delete/{{.Name}}" class="delete-btn" onclick="return confirm('Are you sure you want to delete this file?')">Delete</a>
 						<a href="/convert/{{.Name}}" class="convert-btn" onclick="return confirm('Are you sure you want to convert this file?')">Convert</a>
-						<a href="/view/{{.Name}}" class="view-btn" onclick="return confirm('Are you sure you want to view this file?')">View</a>
+						<a href="/view/{{.Name}}" class="view-btn">View</a>
                     </td>
                 </tr>
                 {{end}}

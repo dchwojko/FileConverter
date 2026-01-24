@@ -19,6 +19,7 @@ func main() {
 	r.HandleFunc("/delete/{filename}", handlers.DeleteFileHandler).Methods("GET")
 	r.HandleFunc("/convert/{filename}", handlers.ConvertFileHandler).Methods("GET")
 	r.HandleFunc("/view/{filename}", handlers.ViewFileHandler).Methods("GET")
+	r.HandleFunc("/render/{filename}", handlers.RenderFileHandler).Methods("GET")
 
 	port := ":80"
 	fmt.Printf("Server starting on port %s\n", port)
