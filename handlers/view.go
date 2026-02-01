@@ -294,6 +294,7 @@ func showFilePreview(w http.ResponseWriter, filename, filePath string) {
 				margin-top: 20px;
 			}
 		</style>
+		<meta charset="UTF-8">
 	</head>
 	<body>
 		<div class="file-info">

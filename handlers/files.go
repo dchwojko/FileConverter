@@ -68,7 +68,7 @@ func ListFilesHandler(w http.ResponseWriter, r *http.Request) {
         <style>
             body {
                 font-family: Arial, sans-serif;
-                max-width: 1000px;
+                max-width: 1500px;
                 margin: 50px auto;
                 padding: 20px;
             }
@@ -194,7 +194,7 @@ func ListFilesHandler(w http.ResponseWriter, r *http.Request) {
                     <td>
                         <a href="{{.DownloadURL}}" class="download-btn">Download</a>
                         <a href="/delete/{{.Name}}" class="delete-btn" onclick="return confirm('Are you sure you want to delete this file?')">Delete</a>
-						<a href="/convert/{{.Name}}" class="convert-btn" onclick="return confirm('Are you sure you want to convert this file?')">Convert</a>
+						<a href="/convert/{{.Name}}" class="convert-btn">Convert to PDF</a>
 						<a href="/view/{{.Name}}" class="view-btn">View</a>
                     </td>
                 </tr>
@@ -263,6 +263,22 @@ func DeleteFileHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	log.Printf("File deleted: %s", filename)
+
+	filePath = filepath.Join("./conversions/", filename+".pdf")
+	// TODO: delete pdf file if exists
+	// Check if file exists
+	if _, err := os.Stat(filePath); os.IsNotExist(err) {
+		http.Error(w, "File not found", http.StatusNotFound)
+		return
+	}
+
+	// Delete the file
+	if err := os.Remove(filePath); err != nil {
+		http.Error(w, "Error deleting file", http.StatusInternalServerError)
+		return
+	}
+
+	log.Printf("File deleted: %s", filename+".pdf")
 
 	// Redirect back to file list
 	http.Redirect(w, r, "/files", http.StatusSeeOther)
