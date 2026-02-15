@@ -1,0 +1,42 @@
+name: Hello World
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Say Hello
+        run: echo "Hello World! GitHub Actions is working!"
+
+      - name: Show some info
+        run: |
+          echo "Repository: ${{ github.repository }}"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Triggered by: ${{ github.actor }}"
+          echo "Event: ${{ github.event_name }}"
+```
+
+---
+
+### How to test it
+
+1. Create the file at `.github/workflows/hello-world.yml` in your repo
+2. Commit and push it to any branch
+3. Go to your repo on GitHub → **Actions** tab
+4. You should see the workflow running — click into it to see the output
+
+You can also trigger it manually anytime via the **Actions** tab → select the workflow → click **"Run workflow"** (that's what `workflow_dispatch` enables).
+
+---
+
+### Expected output in the Actions log
+```
+Hello World! GitHub Actions is working!
+Repository: your-username/your-repo
+Branch: main
+Triggered by: your-username
+Event: push
